@@ -10,11 +10,11 @@ if (args.includes("--help") || args.includes("-h")) {
   console.log(`EDPay Agent Skills installer
 
 Usage:
-  npx --yes @edutecka-mz/edpay-skills [skills CLI options]
+  npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills [skills CLI options]
 
 Examples:
-  npx --yes @edutecka-mz/edpay-skills --agent codex
-  npx --yes @edutecka-mz/edpay-skills --agent '*' --global
+  npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent codex
+  npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*' --global
 
 The installer delegates agent detection and file placement to the upstream
 Vercel Skills CLI. It installs only edpay-integration from the public

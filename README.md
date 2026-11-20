@@ -6,7 +6,19 @@ Portable Agent Skills for building EDPay integrations. The skill works independe
 
 ### Instalação automática
 
-Com o [CLI `skills`](https://github.com/vercel-labs/skills), instale no projecto actual:
+Instale pelo pacote npm oficial no projecto actual:
+
+```bash
+npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*'
+```
+
+Para instalar globalmente nos agentes compatíveis da conta do utilizador:
+
+```bash
+npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*' --global
+```
+
+Também pode instalar directamente do repositório público com o [CLI `skills`](https://github.com/vercel-labs/skills):
 
 ```bash
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration
@@ -22,13 +34,6 @@ Para instalar globalmente, disponível nos projectos da sua conta:
 
 ```bash
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent '*' --global
-```
-
-Depois da primeira publicação do pacote npm, também poderá instalar pelo atalho EDPay. Acrescente `--global` para disponibilizar a Skill nos projectos da conta do utilizador:
-
-```bash
-npx --yes @edutecka-mz/edpay-skills --agent '*'
-npx --yes @edutecka-mz/edpay-skills --agent '*' --global
 ```
 
 Para escolher um agente específico, substitua `<agent-id>` pelo identificador da lista abaixo:
@@ -138,9 +143,9 @@ O CLI oficial publica estes nomes e identificadores de agente. Os nomes servem p
 
 ### Publicação do atalho npm (maintainers)
 
-O EDPay MCP continua servido pela API. O pacote npm `@edutecka-mz/edpay-skills` distribui apenas o instalador da Skill e usa Trusted Publishing/OIDC para as versões seguintes.
+O EDPay MCP continua servido pela API. A versão `0.1.0` do pacote npm `@edutecka-mz/edpay-skills` está publicada; a versão `0.1.1` corrige a permissão executável do CLI. O pacote distribui apenas o instalador da Skill.
 
-Para a primeira publicação, um maintainer com acesso ao âmbito npm `@edutecka-mz` autentica-se com `npm login` e publica `@edutecka-mz/edpay-skills` com `npm publish --access public`. Depois, configure Trusted Publishing OIDC na conta npm com os dados deste pacote e workflow:
+Para automatizar as próximas publicações com OIDC, configure Trusted Publishing na conta npm com os dados deste pacote e workflow:
 
 | Campo npm | Valor |
 | --- | --- |
@@ -150,13 +155,25 @@ Para a primeira publicação, um maintainer com acesso ao âmbito npm `@edutecka
 | Workflow filename | `publish.yml` |
 | Environment name | *(none; the workflow does not use a GitHub Environment)* |
 
-O workflow segue o mesmo padrão OIDC do SDK JavaScript. Para cada versão seguinte, actualize `version` em `package.json`, faça push da tag correspondente (`v<version>`) ou execute manualmente o workflow `Publish npm package`; o GitHub Actions publica com OIDC, sem token npm guardado no GitHub.
+O workflow segue o mesmo padrão OIDC do SDK JavaScript. Para cada versão seguinte, actualize `version` em `package.json` e faça push da tag correspondente (`v<version>`); o GitHub Actions publica com OIDC, sem token npm guardado no GitHub.
 
 ## English
 
 ### Install with the CLI
 
-Use the [`skills` CLI](https://github.com/vercel-labs/skills) to install for the current project:
+Install with the official npm package in the current project:
+
+```bash
+npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*'
+```
+
+Install globally for compatible agents in the current user account:
+
+```bash
+npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*' --global
+```
+
+You can also install directly from the public repository with the [`skills` CLI](https://github.com/vercel-labs/skills):
 
 ```bash
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration
@@ -172,13 +189,6 @@ Install globally for the current user account:
 
 ```bash
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent '*' --global
-```
-
-After the first npm release, you can install with the EDPay shortcut. Add `--global` to make the skill available in all projects under the current user account:
-
-```bash
-npx --yes @edutecka-mz/edpay-skills --agent '*'
-npx --yes @edutecka-mz/edpay-skills --agent '*' --global
 ```
 
 To target one agent, replace `<agent-id>` with an ID from the list above:
@@ -202,9 +212,9 @@ Download [`SKILL.md`](skills/edpay-integration/SKILL.md), place it in an `edpay-
 
 ### Publishing the npm shortcut (maintainers)
 
-EDPay MCP remains served by the API. The `@edutecka-mz/edpay-skills` npm package only installs the Skill and uses npm Trusted Publishing/OIDC for subsequent releases.
+EDPay MCP remains served by the API. Version `0.1.0` of the `@edutecka-mz/edpay-skills` npm package is published; version `0.1.1` fixes the CLI's executable permission. The package only provides the Skill installer.
 
-For the first release, a maintainer with access to the `@edutecka-mz` npm scope signs in with `npm login` and publishes `@edutecka-mz/edpay-skills` using `npm publish --access public`. Then configure npm Trusted Publishing with these package and workflow details:
+To automate future releases with OIDC, configure npm Trusted Publishing with these package and workflow details:
 
 | npm field | Value |
 | --- | --- |
@@ -214,7 +224,7 @@ For the first release, a maintainer with access to the `@edutecka-mz` npm scope 
 | Workflow filename | `publish.yml` |
 | Environment name | *(none; the workflow does not use a GitHub Environment)* |
 
-The workflow follows the same OIDC pattern as the JavaScript SDK. For later releases, update `version` in `package.json` and push the matching `v<version>` tag or run the `Publish npm package` workflow manually. GitHub Actions publishes through OIDC without an npm token stored in GitHub.
+The workflow follows the same OIDC pattern as the JavaScript SDK. For each later release, update `version` in `package.json` and push the matching `v<version>` tag. GitHub Actions publishes through OIDC without an npm token stored in GitHub.
 
 ## Official references
 
