@@ -1,0 +1,42 @@
+{
+  "name": "@edutecka-mz/edpay-skills",
+  "version": "0.1.0",
+  "description": "Install the official EDPay integration skill into supported AI coding agents.",
+  "type": "module",
+  "bin": {
+    "edpay-skills": "./bin/edpay-skills.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edutecka/edpay-agent-skills.git"
+  },
+  "homepage": "https://docs-pay.edutecka.com/integrations/skills/",
+  "bugs": {
+    "url": "https://github.com/edutecka/edpay-agent-skills/issues"
+  },
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "node --check bin/edpay-skills.mjs"
+  },
+  "dependencies": {
+    "skills": "1.9.0"
+  },
+  "keywords": [
+    "edpay",
+    "skills",
+    "ai-agents",
+    "codex",
+    "claude-code",
+    "cursor"
+  ],
+  "author": "EDPay Engineering <dev@edutecka.com>"
+}
