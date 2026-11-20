@@ -2,57 +2,11 @@
 
 Portable Agent Skills for building EDPay integrations. The skill works independently of MCP and applies to coding agents that support the open `SKILL.md` format.
 
-## Português
+### Supported agents
 
-### Instalação automática
+The Skills CLI supports the following agent names and IDs. Use an ID with the `--agent` option:
 
-Instale pelo pacote npm oficial no projecto actual:
-
-```bash
-npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*'
-```
-
-Para instalar globalmente nos agentes compatíveis da conta do utilizador:
-
-```bash
-npx --yes --package=@edutecka-mz/edpay-skills -- edpay-skills --agent '*' --global
-```
-
-Também pode instalar directamente do repositório público com o [CLI `skills`](https://github.com/vercel-labs/skills):
-
-```bash
-npx skills add edutecka/edpay-agent-skills --skill edpay-integration
-```
-
-Instale em todos os agentes compatíveis detectados:
-
-```bash
-npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent '*'
-```
-
-Para instalar globalmente, disponível nos projectos da sua conta:
-
-```bash
-npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent '*' --global
-```
-
-Para escolher um agente específico, substitua `<agent-id>` pelo identificador da lista abaixo:
-
-```bash
-npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent <agent-id>
-```
-
-Sem `--agent`, o CLI detecta os agentes instalados; se não detectar nenhum, pede para escolher. Pode escolher cópia em vez de symlink no assistente de instalação. Para actualizar, execute novamente o comando `skills add`.
-
-### Instalação manual
-
-Descarregue [`SKILL.md`](skills/edpay-integration/SKILL.md), coloque-o numa pasta `edpay-integration` e siga o mecanismo de skills configurado pelo seu agente. Consulte a documentação do agente para confirmar a pasta suportada e reinicie ou recarregue o agente. Também pode descarregar a versão publicada em <https://docs-pay.edutecka.com/skills/edpay-integration/SKILL.md>.
-
-### Agentes compatíveis
-
-O CLI oficial publica estes nomes e identificadores de agente. Os nomes servem para escolher um destino com `--agent`:
-
-| Agente | ID do CLI |
+| Agent | CLI ID |
 | --- | --- |
 | AiderDesk | `aider-desk` |
 | Amp | `amp` |
@@ -134,31 +88,6 @@ O CLI oficial publica estes nomes e identificadores de agente. Os nomes servem p
 | PromptScript | `promptscript` |
 | AdaL | `adal` |
 
-### Integração EDPay
-
-- Skill: [`skills/edpay-integration/SKILL.md`](skills/edpay-integration/SKILL.md)
-- Documentação e OpenAPI: <https://docs-pay.edutecka.com> · <https://docs-pay.edutecka.com/openapi/v1.yaml>
-- MCP opcional: <https://api-pay.edutecka.com/mcp>
-- Instruções públicas para obter chaves: <https://api-pay.edutecka.com/mcp/setup>
-
-### Publicação do atalho npm (maintainers)
-
-O EDPay MCP continua servido pela API. A versão `0.1.0` do pacote npm `@edutecka-mz/edpay-skills` está publicada; a versão `0.1.1` corrige a permissão executável do CLI. O pacote distribui apenas o instalador da Skill.
-
-Para automatizar as próximas publicações com OIDC, configure Trusted Publishing na conta npm com os dados deste pacote e workflow:
-
-| Campo npm | Valor |
-| --- | --- |
-| Package | `@edutecka-mz/edpay-skills` |
-| Organization or user | `edutecka` |
-| Repository | `edpay-agent-skills` |
-| Workflow filename | `publish.yml` |
-| Environment name | *(none; the workflow does not use a GitHub Environment)* |
-
-O workflow segue o mesmo padrão OIDC do SDK JavaScript. Para cada versão seguinte, actualize `version` em `package.json` e faça push da tag correspondente (`v<version>`); o GitHub Actions publica com OIDC, sem token npm guardado no GitHub.
-
-## English
-
 ### Install with the CLI
 
 Install with the official npm package in the current project:
@@ -191,7 +120,7 @@ Install globally for the current user account:
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent '*' --global
 ```
 
-To target one agent, replace `<agent-id>` with an ID from the list above:
+To target one agent, replace `<agent-id>` with a supported CLI agent ID:
 
 ```bash
 npx skills add edutecka/edpay-agent-skills --skill edpay-integration --agent <agent-id>
@@ -210,9 +139,9 @@ Download [`SKILL.md`](skills/edpay-integration/SKILL.md), place it in an `edpay-
 - Optional MCP endpoint: <https://api-pay.edutecka.com/mcp>
 - Public API key setup instructions: <https://api-pay.edutecka.com/mcp/setup>
 
-### Publishing the npm shortcut (maintainers)
+### Publishing the npm package (maintainers)
 
-EDPay MCP remains served by the API. Version `0.1.0` of the `@edutecka-mz/edpay-skills` npm package is published; version `0.1.1` fixes the CLI's executable permission. The package only provides the Skill installer.
+The EDPay MCP endpoint remains served by the API. Version `0.1.2` of the `@edutecka-mz/edpay-skills` npm package includes the executable CLI installer and English-only documentation. The package provides the EDPay Agent Skill installer.
 
 To automate future releases with OIDC, configure npm Trusted Publishing with these package and workflow details:
 
