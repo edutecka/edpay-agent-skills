@@ -20,9 +20,10 @@ Use this skill to implement EDPay integrations safely. Follow the user's languag
 
 ## Credentials and environments
 
-- Customers create their EDPay API key pair in the EDPay Dashboard at <https://pay.edutecka.com/dashboard/api-keys>, under **Developers → API Keys**. They select an account and environment when creating the pair.
-- The private key is shown only once. Tell the user to save it directly into their MCP client's secure secret store or their server's secret manager. Never ask them to paste it into chat, prompts, tool arguments, code, URLs, browser storage, or logs.
+- Customers create an EDPay API key pair for server-to-server integrations under **Developers → API Keys**. They select an account and environment when creating the pair.
+- For server-to-server API use, the private key is shown only once; save the pair in the server's secret manager. For remote MCP, save the one-time composite credential in the MCP client's secure secret store. Never ask the user to paste either value into chat, prompts, tool arguments, code, URLs, browser storage, or logs.
 - Use the pair together in HTTPS server-to-server request headers: `X-EDPay-Public-Key` and `X-EDPay-Private-Key`. Never send the private key from browser or mobile client code.
+- For a remote MCP client, create a credential under **Dashboard → Developers → EDPay MCP** and store its one-time `X-EDPay-MCP-Key` value in the client's secure secret store. It packages the existing API key pair; the API continues to validate the same account, environment, expiry, and scopes. Revoking or expiring the pair also disables the MCP credential.
 - `pk_test_` with `sk_test_` selects Sandbox. `pk_live_` with `sk_live_` selects Production. Reject mixed pairs. Let EDPay validate the actual key and its account environment; do not infer that a key is valid from its prefix.
 - Read-only documentation and MCP discovery do not need customer keys. Invoice actions require a key with the `invoices:write` scope.
 - Never request, configure, return, or expose payment-provider credentials. Customers integrate through EDPay; provider credentials remain in the private payment runtime.
@@ -39,10 +40,10 @@ Use this skill to implement EDPay integrations safely. Follow the user's languag
 
 ## Optional EDPay MCP server
 
-- Remote endpoint: <https://api-pay.edutecka.com/mcp> using Streamable HTTP.
-- Public key setup instructions, with no authentication and no key values: <https://api-pay.edutecka.com/mcp/setup>.
+- Remote endpoint: <https://api-pay.edutecka.com/v1/mcp> using Streamable HTTP. The legacy `/mcp` path remains available for existing clients.
+- Public MCP setup instructions, with no authentication and no key values: <https://api-pay.edutecka.com/v1/mcp/setup>.
 - The unauthenticated MCP tool `edpay_get_key_setup` returns the same safe instructions. Use it to tell the user where to create keys; it cannot retrieve an existing private key.
-- Configure a matching pair in the MCP client's secure secret store as `X-EDPay-Public-Key` and `X-EDPay-Private-Key` headers. Read-only tools work without these headers; write tools require the user's own `invoices:write` pair.
+- Configure the one-time `X-EDPay-MCP-Key` value from the dashboard in the MCP client's secure secret store. Read-only tools work without it; write tools require the user's own API key pair with the `invoices:write` scope. The API still performs its existing pair validation and account authorization.
 - Treat MCP write actions like any other persistent payment action: explain the effect and environment, then wait for an explicit user request before calling them.
 
 ## Finish

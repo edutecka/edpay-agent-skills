@@ -136,8 +136,8 @@ Download [`SKILL.md`](skills/edpay-integration/SKILL.md), place it in an `edpay-
 
 - Skill source: [`skills/edpay-integration/SKILL.md`](skills/edpay-integration/SKILL.md)
 - Documentation and OpenAPI: <https://docs-pay.edutecka.com> · <https://docs-pay.edutecka.com/openapi/v1.yaml>
-- Optional MCP endpoint: <https://api-pay.edutecka.com/mcp>
-- Public API key setup instructions: <https://api-pay.edutecka.com/mcp/setup>
+- Optional MCP endpoint: <https://api-pay.edutecka.com/v1/mcp>
+- Public MCP setup instructions: <https://api-pay.edutecka.com/v1/mcp/setup>
 
 ### Publishing the npm package (maintainers)
 
